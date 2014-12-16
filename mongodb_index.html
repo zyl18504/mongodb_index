@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>DB Index</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/moon.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+		<script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section data-markdown>
+          <script type="text/template">
+            # DB Index
+
+            <small>Allen.zhang</small>
+          </script>
+				</section>
+
+        <section>
+          <section data-markdown>
+            <script type="text/template">
+              ## DB Index
+
+              [数据库索引，是数据库管理系统中一个排序的数据结构，以协助快速查询、更新数据库表中数据。](http://zh.wikipedia.org/zh/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B4%A2%E5%BC%95)
+            </script>
+         </section>
+
+				</section>
+
+        <section>
+          <section data-markdown>
+            <script type="text/template">
+               ### 数据库索引的原理
+
+               * B树
+               * B+树
+            </script>
+          </section>
+
+          <section data-markdown>
+            <script type="text/template">
+               ## B树
+               [在计算机科学中，B树（B-tree）是一种树状数据结构，它能够存储数据、对其进行排序并允许以O(log n)的时间复杂度运行进行查找、顺序读取、插入和删除的数据结构。](http://zh.wikipedia.org/wiki/B%E6%A0%91)
+            </script>
+          </section>
+
+          <section data-markdown>
+            <script type="text/template">
+               ####一棵m 阶的B-树，或者为空树，或为满足下列特性的m 叉树：
+
+               1. 树中每个结点至多有m棵子树
+               1. 若根结点不是叶子结点，则至少有两棵子树
+               1. 除根结点之外的所有非终端结点至少有[m/2] 棵子树
+               1. 所有的非终端结点中包含以下信息数据：
+                  * （n，A0，K1，A1，K2，…，Kn，An）
+                  *  其中：Ki（i=1,2,…,n）为关键码，且Ki<Ki+1，
+                  *  Ai 为指向子树根结点的指针(i=0,1,…,n)，且指针Ai-1 所指子树中所有结点的关键码均小于Ki (i=1,2,…,n)，An 所指子树中所有结点的关键码均大于Kn
+                  *  n([m/2]-1 <= n <= m-1)为关键码的个数
+               1. 所有的叶子结点都出现在同一层次上，并且不带信息（可以看作是外部结点或查找失败的结点，实际上这些结点不存在，指向这些结点的指针为空）。
+            </script>
+          </section>
+
+          <section data-markdown>
+            <script type="text/template">
+              ####B树的查找过程
+              ![B树的查找过程](http://img.my.csdn.net/uploads/201207/28/1343441845_4081.jpg)
+            </script>
+  				</section>
+
+          <section data-markdown>
+            <script type="text/template">
+              ####B+树是应文件系统所需而产生的一种B-树的变形树。一棵m 阶的B+树和m阶的B-树的差异在于:
+              1. 有n 棵子树的结点中含有n个关键码
+              1. 所有的叶子结点中包含了全部关键码的信息，及指向含有这些关键码记录的指针，且叶子结点本身依关键码的大小自小而大的顺序链接。
+              1. 所有的非终端结点可以看成是索引部分，结点中仅含有其子树根结点中最大（或最小）关键码。
+            </script>
+          </section>
+
+          <section>
+            <script type="text/tempalte">
+              ####B+数查找过程
+              ![](http://my.csdn.net/uploads/201207/28/1343448307_6771.jpg)
+            </script>
+          </section>
+
+        </section>
+
+        <section>
+          <section data-markdown>
+            <script type="text/template">
+              ###索引类型
+
+              * 唯一索引
+              * 主键索引
+              * 聚簇索引
+            </script>
+          </section>
+        </section>
+
+
+        <section>
+          <section data-markdown>
+            <script type="text/template">
+              ###MongoDB Index
+
+              * B-tree索引
+              * 地理位置索引
+            </script>
+          </section>
+        </section>
+
+        <section>
+          <section data-markdown>
+              <script type="text/template">
+                ###MongoDB Index Types
+
+                * Single Field Indexes
+                * Compound Indexes
+                * Multikey Indexes
+                * Geospatial Indexes
+                * Text Indexes
+                * Hashed Index
+              </script>
+            </section>
+        </section>
+
+        <section>
+          <section data-markdown>
+            <script type="text/template">
+              ###MongoDB Index Tips
+
+              * Explain
+              * An index key pattern { a: 1, b: 1 } can support a sort on { a: 1, b: 1 } and { a: -1, b: -1 } but not on { a: -1, b: 1 }
+              * An index can support sort operations on a non-prefix subset of the index key pattern. To do so, the query must include equality conditions on all the prefix keys that precede the sort keys.
+
+                For example, the collection data has the following index:
+                { a: 1, b: 1, c: 1, d: 1 }
+                The following operations can use the index to get the sort order:
+                db.data.find( { a: 5 } ).sort( { b: 1, c: 1 } )
+                db.data.find( { b: 3, a: 4 } ).sort( { c: 1 } )
+                db.data.find( { a: 5, b: { $lt: 3} } ).sort( { b: 1 } )
+            </script>
+          </section>
+        </section>
+
+
+          <section>
+            <section data-markdown>
+              <script type="text/template">
+                * Ensure Indexes Fit in RAM
+
+                  db.collection.totalIndexSize()
+                * Indexes that Hold Only Recent Values in RAM
+                * MongoDB can only use one index to support any given operation. However, each clause of an $or query may use a different index.
+              </script>
+            </section>
+          </section>
+
+          <section>
+              <section data-markdown>
+                <script type="text/template">
+                  * Because the cursor is not isolated during its lifetime, intervening write operations on a document may result in a cursor that returns a document more than once if that document has changed. 
+                  * The inequality operators $nin and $ne are not very selective, as they often match a large portion of the index. As a result, in most cases, a $nin or $ne query with an index may perform no better than a $nin or $ne query that must scan all documents in a collection. 
+                  * Queries that specify regular expressions, with inline JavaScript regular expressions or $regex operator expressions, cannot use an index with one exception. Queries that specify regular expression with anchors at the beginning of a string can use an index.
+                </script>
+              </section>
+          </section>
+
+          <section>
+            <section data-markdown>
+              <script type="text/template">
+                #Q & A
+
+                <small>[Allen.zhang](https://github.com/zyl18504)</small>
+              </script>
+            </section>
+          </section>
+
+
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
